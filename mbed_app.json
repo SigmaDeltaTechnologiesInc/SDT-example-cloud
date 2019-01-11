@@ -30,7 +30,7 @@
             "update-client.application-details"     : "(40*1024)"
         },
         "SDT64B": {
-            "target.network-default-interface-type" : "WIFI",
+            "target.network-default-interface-type" : "ETHERNET",
             "update-client.bootloader-details"      : "0x00007188",
             "update-client.application-details"     : "(40*1024)",
 
