@@ -57,16 +57,10 @@ public:
         _cloud_client.on_unregistered(this, &SimpleM2MClient::client_unregistered);
         _cloud_client.on_error(this, &SimpleM2MClient::error);
 
-        if (!mcc_platform_init_connection()) {
-            printf("Network initialized, connecting...\n");
-            bool setup = _cloud_client.setup(mcc_platform_get_network_interface());
-            _register_called = true;
-            if (!setup) {
-                printf("Client setup failed\n");
-                return false;
-            }
-        } else {
-            printf("Failed to initialize connection\n");
+        bool setup = _cloud_client.setup(mcc_platform_get_network_interface());
+        _register_called = true;
+        if (!setup) {
+            printf("Client setup failed\n");
             return false;
         }
 
@@ -168,6 +162,9 @@ public:
             case MbedCloudClient::ConnectDnsResolvingFailed:
                 error = "MbedCloudClient::ConnectDnsResolvingFailed";
                 break;
+            case MbedCloudClient::ConnectorFailedToReadCredentials:
+                error = "MbedCloudClient::ConnectorFailedToReadCredentials";
+                break;
 #ifdef MBED_CLOUD_CLIENT_SUPPORT_UPDATE
             case MbedCloudClient::UpdateWarningCertificateNotFound:
                 error = "MbedCloudClient::UpdateWarningCertificateNotFound";
@@ -204,6 +201,9 @@ public:
                 break;
             case MbedCloudClient::UpdateErrorInvalidHash:
                 error = "MbedCloudClient::UpdateErrorInvalidHash";
+                break;
+            case MbedCloudClient::UpdateErrorConnection:
+                error = "MbedCloudClient::UpdateErrorConnection";
                 break;
 #endif
 #ifndef MBED_CONF_MBED_CLOUD_CLIENT_DISABLE_CERTIFICATE_ENROLLMENT
