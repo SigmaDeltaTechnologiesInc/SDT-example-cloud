@@ -43,7 +43,7 @@
             "storage_filesystem.blockdevice"            : "SD"
         },
         "SDT64B": {
-            "target.network-default-interface-type"     : "WIFI",
+            "target.network-default-interface-type"     : "ETHERNET",
             "target.bootloader_img"                     : "tools/mbed-bootloader-sdt64b-block_device-sotp-v3_3_0.bin",
             "target.header_offset"                      : "0xa000",
             "target.app_offset"                         : "0xa400",
